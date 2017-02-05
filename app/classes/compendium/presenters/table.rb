@@ -1,5 +1,9 @@
+require 'compendium/numeric_helper'
+
 module Compendium::Presenters
   class Table < Query
+    include Compendium::NumericHelper
+    
     attr_reader :records, :totals, :settings
 
     def initialize(*)
@@ -75,8 +79,8 @@ module Compendium::Presenters
       if @settings.formatters[k]
         @settings.formatters[k].call(v)
       else
-        if v.numeric?
-          if v.zero? && @settings.display_zero_as?
+        if numeric?(v)
+          if zero?(v) && @settings.display_zero_as?
             @settings.display_zero_as
           else
             sprintf(@settings.number_format, v)
