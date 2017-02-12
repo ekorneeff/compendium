@@ -29,7 +29,7 @@ module Compendium
           klass = "Compendium::#{"#{option.type}Param".classify}".constantize
           params[option.name] = klass.new(get_default_value(params[option.name], option.default), option.choices)
         rescue IndexError
-          raise IndexError, "invalid index for #{option_name}"
+          raise IndexError, "invalid index for #{option.name}"
         end
       end
 
