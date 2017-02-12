@@ -49,9 +49,20 @@ module Compendium
     include ActiveSupport::Configurable
 
     config_accessor :chart_provider
+    config_accessor :i18n_scope
+    config_accessor :table
   end
 
   configure do |config|
+    config.i18n_scope = :compendium
+    config.table = ActiveSupport::OrderedOptions.new
+    config.table.tap do |c| 
+      c.number_format = '%0.2f'
+      c.table_class   = 'results'
+      c.header_class  = 'headings'
+      c.row_class     = 'data'
+      c.totals_class  = 'totals'
+    end
     config.chart_provider = Compendium::AbstractChartProvider.find_chart_provider
   end
 end

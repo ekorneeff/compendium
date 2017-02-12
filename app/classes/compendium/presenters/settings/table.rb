@@ -10,11 +10,11 @@ module Compendium::Presenters::Settings
       @headings = {}
 
       # Set default values for settings
-      number_format       '%0.2f'
-      table_class         'results'
-      header_class        'headings'
-      row_class           'data'
-      totals_class        'totals'
+      number_format       Compendium.config.table.number_format
+      table_class         Compendium.config.table.table_class
+      header_class        Compendium.config.table.header_class
+      row_class           Compendium.config.table.row_class
+      totals_class        Compendium.config.table.totals_class
       skipped_total_cols  []
     end
 
