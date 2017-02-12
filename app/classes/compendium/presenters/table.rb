@@ -91,10 +91,15 @@ module Compendium::Presenters
       end || v
     end
 
-    def translate(v, opts = {})
-      opts.reverse_merge!(scope: settings.i18n_scope) if settings.i18n_scope?
-      opts[:default] = -> * { I18n.t(v, scope: 'compendium') }
-      I18n.t(v, opts)
+    def translate(v, options = {})
+      lookups =  [ ]
+      lookups << [ query.report.report_name, :tables,   query.name, v ].join('.').to_sym
+      lookups << [ query.report.report_name, :tables,   :defaults,  v ].join('.').to_sym
+      lookups << [ query.report.report_name, :defaults, v ].join('.').to_sym
+      lookups << [ :tables, :defaults, v ].join('.').to_sym
+      lookups << v.to_s.humanize
+
+      I18n.t(lookups.shift, options.reverse_merge(scope: Compendium.config.i18n_scope, default: lookups))
     end
   end
 end
