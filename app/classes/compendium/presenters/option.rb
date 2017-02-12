@@ -92,7 +92,7 @@ module Compendium::Presenters
 
     def dropdown(form, choices = {}, options = {})
       content_tag('div', class: 'option-dropdown') do
-        form.select option.name, choices, options.symbolize_keys
+        form.select option.name, choices, options.except('html').symbolize_keys, options.fetch('html', {}).deep_symbolize_keys
       end
     end
 
