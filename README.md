@@ -84,7 +84,7 @@ If validation is set up on any options, calling `valid?` on the report will vali
 
 ```ruby
 class MyReport < Compendium::Report
-  options :starting_on, :date, validates: { presence: true }
+  option :starting_on, :date, validates: { presence: true }
 end
 
 r = MyReport.new
