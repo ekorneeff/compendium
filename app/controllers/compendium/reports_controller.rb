@@ -3,8 +3,8 @@ module Compendium
     helper Compendium::ReportsHelper
     include Compendium::ReportsHelper
 
-    before_filter :find_report
-    before_filter :find_query
+    before_filter :find_report, except: [ :index ]
+    before_filter :find_query, except: [ :index ]
     before_filter :validate_options, only: [:run, :export]
     before_filter :run_report, only: [:run, :export]
 
