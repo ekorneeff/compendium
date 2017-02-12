@@ -39,8 +39,8 @@ module Compendium
         # If given a proc, defer determining values until later.
         index = obj
       else
-        index = numeric?(obj) ? obj.to_i : @choices.index(obj)
-        raise IndexError if (!obj.nil? && index.nil?) || index.to_i.abs > @choices.length - 1
+        index = numeric?(obj) ? obj.to_i : @choices.index(obj) || @choices.rindex(obj)
+        # raise IndexError if (obj.present? && index.nil?) #|| index.to_i.abs > @choices.length - 1
       end
 
       super(index)
