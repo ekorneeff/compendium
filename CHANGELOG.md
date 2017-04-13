@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.2.2
+* Allow report options to be hidden
+* Allow the collection in a CollectionQuery to be generated at report runtime using a proc
+
+## 1.2.1
+* Fix crash when converting a ResultSet to JSON when the results is a flat array
+* Remove haml implicit dependency
+
 ## 1.2.0
 * Added the ability to render a query to CSV, and a controller action for downloading the CSV
 * Added `exports` report setting
